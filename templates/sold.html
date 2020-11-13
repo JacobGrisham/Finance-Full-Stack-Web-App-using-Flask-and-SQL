@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sold
+{% endblock %}
+
+{% block main %}
+    <div class="alert alert-success" role="alert">
+      <h4 class="alert-heading">Success</h4>
+      <p>You have sold {{ shares }} shares of {{ symbol }} stock.</p>
+      <hr>
+      <p class="mb-0"><a href="/sell" class="btn btn-light">Sell</a> more stocks or return to the <a href="/" class="btn btn-light">Home</a> page</p>
+    </div>
+{% endblock %}

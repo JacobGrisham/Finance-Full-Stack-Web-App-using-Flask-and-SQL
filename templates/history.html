@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <h1>History</h1>
+    <table class="table table-hover">
+        <tr class="thead-light">
+            <th scope="col">Stocks</th>
+            <th scope="col">Shares Bought</th>
+            <th scope="col">Price</th>
+            <th scope="col">Transacted</th>
+        </tr>
+        {% for i in range(bought_list_length) %}
+        <tr>
+            <td>{{ bought_list[i].symbol }}</td>
+            <td> + {{ bought_list[i].shares_bought }}</td>
+            <td>{{ bought_list[i].price_bought }}</td>
+            <td>{{ bought_list[i].time }}</td>
+        </tr>
+        {% endfor %}
+    <table class="table table-hover">
+        <tr class="thead-light">
+            <th scope="col">Stocks</th>
+            <th scope="col">Shares Sold</th>
+            <th scope="col">Price</th>
+            <th scope="col">Transacted</th>
+        </tr>
+        {% for i in range(sold_list_length) %}
+        <tr>
+            <td>{{ sold_list[i].symbol }}</td>
+            <td> - {{ sold_list[i].shares_sold }}</td>
+            <td>{{ sold_list[i].price_sold }}</td>
+            <td>{{ sold_list[i].time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
