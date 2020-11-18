@@ -47,7 +47,7 @@ To run this project locally:
 - In your terminal, navigate to the root project directory and run the following commands
 - To install the dependencies
 ```
-$ pipenv install
+$ pipenv install flask flask-session flask-sqlalchemy requests flask-marshmallow marshmallow-sqlalchemy
 ```
 - You'll need to register for an API key in order to be able to query IEX’s data
 - [Register](iexcloud.io/cloud-login#/register/) for an account
