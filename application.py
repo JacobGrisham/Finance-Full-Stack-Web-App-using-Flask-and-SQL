@@ -8,7 +8,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import apology, login_required, lookup, usd
+from helpers import unauthorized, forbidden, apology, login_required, lookup, usd
 
 # Configure application
 app = Flask(__name__)
@@ -231,7 +231,7 @@ def buy():
         
         # User error handling: stop user if seeking to buy beyond cash balance
         if available < total:
-             return apology("Insufficient funds to complete transaction", 403)
+             return forbidden("Insufficient funds to complete transaction")
         
         # Continue with transaction and calculate remaining cash
         remaining = available - total
@@ -432,7 +432,7 @@ def sell():
 
         # If user doesn't own stock, render error
         if symbol == '':
-            return apology("Must own stock before selling", 403)
+            return unauthorized("Must own stock before selling")
 
         # Obtain number of shares from user
         shares = int(request.form.get("shares"))
@@ -441,9 +441,9 @@ def sell():
         if not shares:
              return apology("Please enter number of shares", 403)
         if shares < 0:
-             return apology("Please enter a positive number", 403)
+             return forbidden("Please enter a positive number")
         if shares == 0:
-             return apology("Transaction will not proceed", 403)
+             return forbidden("Transaction will not proceed")
 
         # Obtain data for stock selected
         shares_held_list = Portfolio.query.filter(Portfolio.user_id == user, Portfolio.symbol == symbol).first()

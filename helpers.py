@@ -5,19 +5,25 @@ import urllib.parse
 from flask import redirect, render_template, request, session
 from functools import wraps
 
+"""Render message as an apology to user."""
+def escape(s):
+    """
+    Escape special characters.
+
+    https://github.com/jacebrowning/memegen#special-characters
+    """
+    for old, new in [("-", "--"), (" ", "-"), ("_", "__"), ("?", "~q"),
+                        ("%", "~p"), ("#", "~h"), ("/", "~s"), ("\"", "''")]:
+        s = s.replace(old, new)
+    return s
+
+def unauthorized(errorMessage):
+    return render_template("401.html", info = escape(errorMessage))
+
+def forbidden(errorMessage):
+    return render_template("403.html", info = escape(errorMessage))
 
 def apology(message, code=400):
-    """Render message as an apology to user."""
-    def escape(s):
-        """
-        Escape special characters.
-
-        https://github.com/jacebrowning/memegen#special-characters
-        """
-        for old, new in [("-", "--"), (" ", "-"), ("_", "__"), ("?", "~q"),
-                         ("%", "~p"), ("#", "~h"), ("/", "~s"), ("\"", "''")]:
-            s = s.replace(old, new)
-        return s
     return render_template("apology.html", top=code, bottom=escape(message)), code
 
 
