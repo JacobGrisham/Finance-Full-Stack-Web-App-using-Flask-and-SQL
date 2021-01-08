@@ -123,11 +123,16 @@ sold_schema = SoldSchema(many=True)
 #("CREATE TABLE sold (seller_id INTEGER, time NUMERIC, symbol TEXT, shares_sold INTEGER, price_sold INTEGER)")
 
 # Make sure API key is set
+os.environ.get("API_KEY")
+
 if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
 
-
 @app.route("/")
+def landing():
+    return render_template("landing.html")
+
+@app.route("/home")
 @login_required
 def index():
     # Obtain user id
@@ -337,7 +342,7 @@ def login():
         session["user_id"] = rows.id
 
         # Redirect user to home page
-        return redirect("/")
+        return redirect("/home")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -399,7 +404,7 @@ def register():
         #("INSERT INTO users (username, hash) VALUES (:username, :hash)", username=username, hash=hashed)
 
         # Bring user to login page
-        return redirect("/")
+        return redirect("/login")
 
 
 @app.route("/sell", methods=["GET", "POST"])

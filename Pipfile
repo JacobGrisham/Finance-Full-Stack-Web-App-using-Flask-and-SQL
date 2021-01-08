@@ -12,6 +12,7 @@ flask-sqlalchemy = "*"
 requests = "*"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.9"

@@ -11,8 +11,12 @@
         <!-- documentation at http://getbootstrap.com/docs/4.1/, alternative themes at https://bootswatch.com/ -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- https://favicon.io/emoji-favicons/money-mouth-face/ -->
+        <!-- Favicon -->
         <link href="/static/favicon.ico" rel="icon">
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/static/favicon/site.webmanifest">
 
         <link href="/static/styles.css" rel="stylesheet">
 
@@ -20,20 +24,22 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-        <title>C$50 Finance: {% block title %}{% endblock %}</title>
+        <title>Robynhood: {% block title %}{% endblock %}</title>
 
     </head>
 
     <body>
 
         <nav class="navbar navbar-expand-md navbar-light bg-light border">
-            <a class="navbar-brand" href="/"><span class="blue">C</span><span class="red">$</span><span class="yellow">5</span><span class="green">0</span> <span class="red">Finance</span></a>
+            <a class="navbar-brand" href="/">Robynhood</a>
+            <img src="../static/images/feather.svg">
             <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar">
                 {% if session.user_id %}
                     <ul class="navbar-nav mr-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/index">Index</a></li>
                         <li class="nav-item"><a class="nav-link" href="/quote">Quote</a></li>
                         <li class="nav-item"><a class="nav-link" href="/buy">Buy</a></li>
                         <li class="nav-item"><a class="nav-link" href="/sell">Sell</a></li>
@@ -44,8 +50,8 @@
                     </ul>
                 {% else %}
                     <ul class="navbar-nav ml-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link btn btn-success btn-sm text-white register" href="/register">Sign Up</a></li>
                     </ul>
                 {% endif %}
             </div>
@@ -63,8 +69,12 @@
             {% block main %}{% endblock %}
         </main>
         
-        <footer class="small text-center text-muted">
-            Data provided for free by <a href="https://iextrading.com/developer">IEX</a>. View <a href="https://iextrading.com/api-exhibit-a/">IEX’s Terms of Use</a>.
+        <footer class="footer">
+            <div class="container">
+                <span class="small text-muted">
+                    Data provided for free by <a href="https://iextrading.com/developer">IEX</a>. View <a href="https://iextrading.com/api-exhibit-a/">IEX’s Terms of Use</a>.
+                </span>
+            </div>
         </footer>
 
     </body>

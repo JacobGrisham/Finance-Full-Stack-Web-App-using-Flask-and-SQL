@@ -56,8 +56,9 @@ $ pipenv install flask flask-session flask-sqlalchemy requests flask-marshmallow
 - Once you’ve confirmed your account via a confirmation email, sign in to iexcloud.io
 - Click API Tokens
 - Copy the key that appears under the Token column (it should begin with pk_)
+- Create a .env file and paste the following code into it
 ```
-$ export API_KEY=value
+$ API_KEY=<value>
 ```
 - To start the web server, execute (without debugging):
 ```
@@ -70,6 +71,9 @@ $ flask run
 ```
 ## 📐 Tests
 
+## 📣 Attribution
+- Feather icon made by [Freepik](http://www.freepik.com/) from [Flaticon](https://www.flaticon.com/free-icon/feather_105145?term=feather&page=1&position=85&related_item_id=105145)
+- Illustrations by [Freepik Storyset](https://storyset.com/people/rafiki)
 
 ## 🔒 License
 Copyright Notice and Statement: currently not offering any license. Permission only to view and download.

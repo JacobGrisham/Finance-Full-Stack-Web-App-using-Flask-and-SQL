@@ -4,22 +4,16 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
-/* colors for brand */
-nav .navbar-brand .blue
+nav img
 {
-    color: #537fbe;
+    height: auto;
+    width: 2rem;
 }
-nav .navbar-brand .red
+
+.register
 {
-    color: #ea433b;
-}
-nav .navbar-brand .yellow
-{
-    color: #f5b82e;
-}
-nav .navbar-brand .green
-{
-    color: #2e944b;
+    border-radius: 3rem;
+    width: 7rem;
 }
 
 main .form-control
@@ -44,4 +38,19 @@ main img
 {
     /* constrain images on small screens */
     max-width: 100%;
+}
+
+.jumbotron
+{
+    background-color: white;
+}
+
+footer
+{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
 }
