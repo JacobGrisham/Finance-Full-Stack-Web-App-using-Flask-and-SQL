@@ -2,7 +2,8 @@
 ### Homework from [Harvard's Introduction to Computer Science CS50 hosted on eDX](https://www.edx.org/course/cs50s-introduction-to-computer-science)
 ### 🎓 [Web Track](https://cs50.harvard.edu/x/2020/tracks/web/)
 - [Finance](https://cs50.harvard.edu/x/2020/tracks/web/finance/): Web application via which you can manage portfolios of stocks. This tool allows you to check real stocks’ actual prices and portfolios’ values, it will also let you buy (okay, “buy”) and sell (okay, “sell”) stocks by querying [IEX](iexcloud.io/) for stocks’ prices.
-- I wrote all the code in the templates directory. I wrote most of the code in application.py. The remaining files were provided by the instructor.
+- I wrote all the code in the templates directory. I wrote most of the code in application.py. Some of the code in helpers.py was provided by instructor
+- I styled the application myself, with illustrations provided by [Freepik](http://www.freepik.com/). Landing page and favicon cloned after [Robinhood](https://robinhood.com/us/en/)
 
 ## Table of Contents
 -	[Technologies](#technologies)

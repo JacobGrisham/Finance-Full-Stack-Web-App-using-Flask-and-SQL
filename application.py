@@ -8,7 +8,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import badRequest, noData, unauthorized, forbidden, notFound, apology, login_required, lookup, usd
+from helpers import badRequest, noData, unauthorized, forbidden, notFound, login_required, lookup, usd
 
 # Configure application
 app = Flask(__name__)
@@ -206,9 +206,11 @@ def buy():
         if not symbol:
             return noData("Please enter a stock symbol, i.e. AMZN")
         result = lookup(symbol)
-        if result == str:
+        if result == None:
              return badRequest("Please enter a valid stock symbol")
         shares = int(request.form.get("shares"))
+        if symbol == None:
+            return noData("Please enter number of shares")
         if shares < 0:
              return badRequest("Please enter a positive number")
         if shares == 0:
@@ -368,6 +370,11 @@ def quote():
     else:
         symbol = request.form.get("symbol")
         data = lookup(symbol)
+        # User error handling: stop empty symbol and shares fields, stop invalid symbols, and negative share numbers
+        if not symbol:
+            return noData("Please enter a stock symbol, i.e. AMZN")
+        if data == None:
+            return badRequest("Please enter a valid stock symbol")
         return render_template("quoted.html", data = data)
 
 
@@ -499,16 +506,21 @@ def sell():
         return render_template("sold.html", shares = shares, symbol = symbol.upper())
 
 
-def errorhandler(e):
-    """Handle error"""
-    if not isinstance(e, HTTPException):
-        e = InternalServerError()
-    return apology(e.name, e.code)
+# def errorhandler(e):
+#     """Handle error"""
+#     if not isinstance(e, HTTPException):
+#         e = InternalServerError()
+#     return apology(e.name, e.code)
 
 
 # Listen for errors
-for code in default_exceptions:
-    app.errorhandler(code)(errorhandler)
+# for code in default_exceptions:
+#     app.errorhandler(code)(errorhandler)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
 # Run Server
 if __name__ == '__main__':

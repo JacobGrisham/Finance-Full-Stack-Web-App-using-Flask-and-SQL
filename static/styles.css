@@ -67,3 +67,7 @@ footer
 {
     width: 100vw;
 }
+
+.error {
+    max-width: max-content;
+}
