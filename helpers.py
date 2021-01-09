@@ -17,11 +17,20 @@ def escape(s):
         s = s.replace(old, new)
     return s
 
+def badRequest(errorMessage):
+    return render_template("400.html", info = escape(errorMessage))
+
+def noData(errorMessage):
+    return render_template("no-data.html", info = escape(errorMessage))
+
 def unauthorized(errorMessage):
     return render_template("401.html", info = escape(errorMessage))
 
 def forbidden(errorMessage):
     return render_template("403.html", info = escape(errorMessage))
+
+def notFound(errorMessage):
+    return render_template("404.html", info = escape(errorMessage))
 
 def apology(message, code=400):
     return render_template("apology.html", top=code, bottom=escape(message)), code

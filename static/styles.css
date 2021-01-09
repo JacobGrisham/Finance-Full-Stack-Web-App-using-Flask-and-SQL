@@ -42,7 +42,7 @@ main img
 
 .jumbotron
 {
-    background-color: white;
+    background-color: transparent;
 }
 
 footer
@@ -53,4 +53,17 @@ footer
     height: 60px;
     line-height: 60px;
     text-align: center;
+}
+
+.background
+{
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    right: 0;
+}
+
+#home
+{
+    width: 100vw;
 }

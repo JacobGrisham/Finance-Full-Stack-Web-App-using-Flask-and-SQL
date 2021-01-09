@@ -8,7 +8,7 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import unauthorized, forbidden, apology, login_required, lookup, usd
+from helpers import badRequest, noData, unauthorized, forbidden, notFound, apology, login_required, lookup, usd
 
 # Configure application
 app = Flask(__name__)
@@ -204,15 +204,15 @@ def buy():
 
         # User error handling: stop empty symbol and shares fields, stop invalid symbols, and negative share numbers
         if not symbol:
-            return apology("Please enter a stock symbol, i.e. AMZN", 403)
+            return noData("Please enter a stock symbol, i.e. AMZN")
         result = lookup(symbol)
         if result == str:
-             return apology("Please enter a valid stock symbol", 403)
+             return badRequest("Please enter a valid stock symbol")
         shares = int(request.form.get("shares"))
         if shares < 0:
-             return apology("Please enter a positive number", 403)
+             return badRequest("Please enter a positive number")
         if shares == 0:
-             return apology("Transaction will not proceed", 403)
+             return noData("Transaction will not proceed")
 
         # Obtain user id
         user = session["user_id"]
@@ -324,11 +324,11 @@ def login():
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            return apology("must provide username", 403)
+            return noData("Must provide username")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password", 403)
+            return noData("Must provide password")
 
         # Query database for username
         rows = Users.query.filter_by(username=request.form.get("username")).first()
@@ -336,7 +336,7 @@ def login():
 
         # Ensure username exists and password is correct
         if rows.username != request.form.get("username") or not check_password_hash(rows.hash, request.form.get("password")):
-            return apology("invalid username and/or password", 403)
+            return unauthorized("invalid username and/or password")
 
         # Remember which user has logged in
         session["user_id"] = rows.id
@@ -381,18 +381,18 @@ def register():
 
         # User error handling: stop empty username and password fields, stop usernames already taken, stop non-matching passwords
         if not username:
-            return apology("Please enter a username", 403)
+            return noData("Please enter a username")
         existing = Users.query.filter_by(username=username)
 
         #("SELECT * FROM users WHERE username = :username", username=username)
         if existing == username:
-            return apology("Username already taken", 403)
+            return forbidden("Username already taken")
         password = request.form.get("password")
         if not password:
-            return apology("Please enter a password", 403)
+            return noData("Please enter a password")
         confirmation = request.form.get("confirmation")
         if password != confirmation:
-            return apology("Passwords do not match", 403)
+            return unauthorized("Passwords do not match")
         hashed = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
 
         # All users automatically recieve $10,000 to start with
@@ -432,18 +432,18 @@ def sell():
 
         # If user doesn't own stock, render error
         if symbol == '':
-            return unauthorized("Must own stock before selling")
+            return forbidden("Must own stock before selling")
 
         # Obtain number of shares from user
         shares = int(request.form.get("shares"))
 
         # Prevent user from submitting form with no number, negative number, or zero
         if not shares:
-             return apology("Please enter number of shares", 403)
+             return noData("Please enter number of shares")
         if shares < 0:
-             return forbidden("Please enter a positive number")
+             return badRequest("Please enter a positive number")
         if shares == 0:
-             return forbidden("Transaction will not proceed")
+             return noData("Transaction will not proceed")
 
         # Obtain data for stock selected
         shares_held_list = Portfolio.query.filter(Portfolio.user_id == user, Portfolio.symbol == symbol).first()
@@ -456,7 +456,7 @@ def sell():
 
         # Prevent user from selling more than they have
         if shares > shares_held:
-            return apology("Unable to sell more than you have", 403)
+            return forbidden("Unable to sell more than you have")
 
         # Obtain available cash
         available = (Users.query.filter_by(id = user).first()).cash
