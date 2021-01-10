@@ -9,6 +9,8 @@
 -   I wrote all the code in the templates directory. I wrote most of the code in application.py. Some of the code in helpers.py was provided by instructor
 -   I styled the application myself, with illustrations provided by [Freepik](http://www.freepik.com/). Landing page and favicon cloned after [Robinhood](https://robinhood.com/us/en/)
 
+![Finance Program Demo](img/demo.gif)
+
 ## Table of Contents
 -   [Technologies](#technologies)
 -   [Features](#features)
@@ -16,7 +18,7 @@
 -   [Project Status](#project-status)
 -   [Getting Started](#getting-started)
 -   [Tests](#tests)
--   [Acknowledgments](#acknowledgments)
+-   [Attribution](#attribution)
 -   [License](#license)
 
 ## 🛠 Technologies
