@@ -1,0 +1,4 @@
+# command to install dependencies
+language: python
+install:
+  - pip install -r requirements.txt
