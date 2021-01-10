@@ -11,14 +11,14 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import badRequest, noData, unauthorized, forbidden, notFound, login_required, lookup, usd
 
 # Configure application
-app = Flask(__name__)
+application = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 # Ensure templates are auto-reloaded
-app.config["TEMPLATES_AUTO_RELOAD"] = True
+application.config["TEMPLATES_AUTO_RELOAD"] = True
 
 # Ensure responses aren't cached
-@app.after_request
+@application.after_request
 def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     response.headers["Expires"] = 0
@@ -26,21 +26,21 @@ def after_request(response):
     return response
 
 # Custom filter
-app.jinja_env.filters["usd"] = usd
+application.jinja_env.filters["usd"] = usd
 
 # Configure session to use filesystem (instead of signed cookies)
-app.config["SESSION_FILE_DIR"] = mkdtemp()
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+application.config["SESSION_FILE_DIR"] = mkdtemp()
+application.config["SESSION_PERMANENT"] = False
+application.config["SESSION_TYPE"] = "filesystem"
+Session(application)
 
 # Configure Flask to use SQLAlchemy (SQLite3) database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'finances.db')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'finances.db')
+application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(application)
 
 # Configure marshmallow
-ma = Marshmallow(app)
+ma = Marshmallow(application)
 
 # Create classes/models
 class Users(db.Model):
@@ -114,7 +114,7 @@ sold_schema = SoldSchema(many=True)
 
 # To create database in python shell:
 # Python
-# from application import db
+# from applicationlication import db
 # db.create_all()
 
 # To create database with SQL command-line arguemnts
@@ -128,11 +128,11 @@ os.environ.get("API_KEY")
 if not os.environ.get("API_KEY"):
     raise RuntimeError("API_KEY not set")
 
-@app.route("/")
+@application.route("/")
 def landing():
     return render_template("landing.html")
 
-@app.route("/home")
+@application.route("/home")
 @login_required
 def index():
     # Obtain user id
@@ -194,7 +194,7 @@ def index():
         return render_template("index.html", symbol_list = symbol_list, symbol_list_length = symbol_list_length, shares = shares, price = price, total = total, available = usd(available), grand_total = usd(grand_total))
 
 
-@app.route("/buy", methods=["GET", "POST"])
+@application.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
     if request.method == "GET":
@@ -284,7 +284,7 @@ def buy():
         return render_template("bought.html", symbol = symbol, shares = shares, total = usd(total))
 
 
-@app.route("/history")
+@application.route("/history")
 @login_required
 def history():
     # Obtain user id
@@ -314,7 +314,7 @@ def history():
         return render_template("history.html", bought_list = bought_list, sold_list = sold_list, bought_list_length = bought_list_length, sold_list_length = sold_list_length)
 
 
-@app.route("/login", methods=["GET", "POST"])
+@application.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
 
@@ -351,7 +351,7 @@ def login():
         return render_template("login.html")
 
 
-@app.route("/logout")
+@application.route("/logout")
 def logout():
     """Log user out"""
 
@@ -362,7 +362,7 @@ def logout():
     return redirect("/")
 
 
-@app.route("/quote", methods=["GET", "POST"])
+@application.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():
     if request.method == "GET":
@@ -378,7 +378,7 @@ def quote():
         return render_template("quoted.html", data = data)
 
 
-@app.route("/register", methods=["GET", "POST"])
+@application.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
         return render_template("register.html")
@@ -414,7 +414,7 @@ def register():
         return redirect("/login")
 
 
-@app.route("/sell", methods=["GET", "POST"])
+@application.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
     # Obtain user id
@@ -515,14 +515,14 @@ def sell():
 
 # Listen for errors
 # for code in default_exceptions:
-#     app.errorhandler(code)(errorhandler)
+#     application.errorhandler(code)(errorhandler)
 
-@app.errorhandler(404)
+@application.errorhandler(404)
 def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
 
 # Run Server
 if __name__ == '__main__':
-    app.run(debug = True)
+    application.run(debug = True)
 # Run the following in the command line: python application.py

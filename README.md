@@ -21,9 +21,9 @@
 ## 🛠 Technologies
 |Graphic Design|Front-End|Back-End|Database|Deployment|Testing|
 |------------- | ------- | ------ | ------ | -------- | -------|
-|Adobe XD	    |HTML5	  |Python3  |SQLite  |Heroku	   |Jasmine|
-|.			        |CSS3		  |[Flask](https://flask.palletsprojects.com/en/1.1.x/)   |[SQL Alchemy](https://www.sqlalchemy.org/)|.      |Lighthouse|
-|.			        |Bootstrap 4|[Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)	|[Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)	  |Git		   |.|
+|Adobe XD	    |HTML5	  |Python3  |SQLite  |AWS	   |Jasmine|
+|.			        |CSS3		  |[Flask](https://flask.palletsprojects.com/en/1.1.x/)   |[SQL Alchemy](https://www.sqlalchemy.org/)|Git      |Lighthouse|
+|.			        |Bootstrap 4|[Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)	|[Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)	  |.		   |.|
 |.			        |[Jinja](https://jinja.palletsprojects.com/en/2.11.x/)    |.		   |.		    |.		     |.|
 
 ## ⚙️ Features
@@ -42,6 +42,7 @@
 -   Parsing data from API
 -   Parsing data from SQL queries
 -   Calculations using data from API and database
+-   Deploying application to AWS with [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance
 
 ## ✅ Project Status
 -	  Add tests
