@@ -39,6 +39,18 @@ application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(base
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(application)
 
+# Configure deployemnt to use AWS RDS database
+if 'RDS_HOSTNAME' in os.environ:
+    DATABASES = {
+        'default': {
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
+    }
+
 # Configure marshmallow
 ma = Marshmallow(application)
 
