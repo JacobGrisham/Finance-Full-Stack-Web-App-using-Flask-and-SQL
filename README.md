@@ -7,8 +7,8 @@
 -   I styled the application myself, with illustrations provided by [Freepik](http://www.freepik.com/). Landing page and favicon cloned after [Robinhood](https://robinhood.com/us/en/)
 
 ## Table of Contents
--   Technologies](#technologies)
--   Features](#features)
+-   [Technologies](#technologies)
+-   [Features](#features)
 -   [Lessons Learned](#lessons-learned)
 -   [Project Status](#project-status)
 -   [Getting Started](#getting-started)
