@@ -34,15 +34,11 @@ application.config["SESSION_PERMANENT"] = False
 application.config["SESSION_TYPE"] = "filesystem"
 Session(application)
 
-# Configure Flask to use SQLAlchemy (SQLite3) database
-application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'finances.db')
-application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(application)
-
 # Configure deployemnt to use AWS RDS database
 if 'RDS_HOSTNAME' in os.environ:
     DATABASES = {
         'default': {
+            'ENGINE': 'flask.db.backends.mysql',
             'NAME': os.environ['RDS_DB_NAME'],
             'USER': os.environ['RDS_USERNAME'],
             'PASSWORD': os.environ['RDS_PASSWORD'],
@@ -50,6 +46,12 @@ if 'RDS_HOSTNAME' in os.environ:
             'PORT': os.environ['RDS_PORT'],
         }
     }
+
+# When project was running locally. Configure Flask to use SQLAlchemy (SQLite3) database
+# application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'finances.db')
+application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://' + os.environ['RDS_USERNAME'] + ':' + os.environ['RDS_PASSWORD'] + '@' + os.environ['RDS_HOSTNAME'] + '/' + os.environ['RDS_DB_NAME']
+application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(application)
 
 # Configure marshmallow
 ma = Marshmallow(application)
