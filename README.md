@@ -24,10 +24,10 @@
 ## 🛠 Technologies
 |Graphic Design|Front-End|Back-End|Database|Deployment|Testing|
 |------------- | ------- | ------ | ------ | -------- | -------|
-|Inkscape	    |HTML5	  |Python3  |SQLite  |AWS	   |Pytest|
+|Inkscape	    |HTML5	  |Python3  |SQLite  |AWS Elastic Beanstalk	   |Pytest|
 |.			        |CSS3		  |[Flask](https://flask.palletsprojects.com/en/1.1.x/)   |[SQL Alchemy](https://www.sqlalchemy.org/)|Git      |Lighthouse|
 |.			        |Bootstrap 4|[Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)	|[Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)	  |.		   |.|
-|.			        |[Jinja](https://jinja.palletsprojects.com/en/2.11.x/)    |.		   |.		    |.		     |.|
+|.			        |[Jinja](https://jinja.palletsprojects.com/en/2.11.x/)    |.		   |[RDS](https://aws.amazon.com/rds/)		    |.		     |.|
 
 ## ⚙️ Features
 -   Login, sign-up
@@ -45,7 +45,7 @@
 -   Parsing data from SQL queries
 -   Calculations using data from API and database
 -   Continous integration and continuous deployment with Travis CI
--   Deploying application to AWS with [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance
+-   Deploying application to AWS with [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance and SQL database to a separate [RDS](https://aws.amazon.com/rds/) instance
 
 ## ✅ Project Status
 -	  Add tests

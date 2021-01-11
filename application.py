@@ -49,7 +49,7 @@ if 'RDS_HOSTNAME' in os.environ:
 
 # When project was running locally. Configure Flask to use SQLAlchemy (SQLite3) database
 # application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'finances.db')
-application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://' + os.environ['RDS_USERNAME'] + ':' + os.environ['RDS_PASSWORD'] + '@' + os.environ['RDS_HOSTNAME'] + '/' + os.environ['RDS_DB_NAME']
+application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://' + os.environ.get['RDS_USERNAME'] + ':' + os.environ.get['RDS_PASSWORD'] + '@' + os.environ.get['RDS_HOSTNAME'] + '/' + os.environ.get['RDS_DB_NAME']
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(application)
 
