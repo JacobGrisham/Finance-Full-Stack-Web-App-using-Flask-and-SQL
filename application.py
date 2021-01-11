@@ -124,16 +124,6 @@ portfolio_schema = PortfolioSchema(many=True)
 bought_schema = BoughtSchema(many=True)
 sold_schema = SoldSchema(many=True)
 
-# To create database in python shell:
-# Python
-# from applicationlication import db
-# db.create_all()
-
-# To create database with SQL command-line arguemnts
-#("CREATE TABLE portfolio (user_id INTEGER, symbol TEXT, current_shares INTEGER)")
-#("CREATE TABLE bought (buyer_id INTEGER, time NUMERIC, symbol TEXT, shares_bought INTEGER, price_bought INTEGER)")
-#("CREATE TABLE sold (seller_id INTEGER, time NUMERIC, symbol TEXT, shares_sold INTEGER, price_sold INTEGER)")
-
 # Make sure API key is set
 os.environ.get("API_KEY")
 

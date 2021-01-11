@@ -24,7 +24,7 @@
 ## 🛠 Technologies
 |Graphic Design|Front-End|Back-End|Database|Deployment|Testing|
 |------------- | ------- | ------ | ------ | -------- | -------|
-|Adobe XD	    |HTML5	  |Python3  |SQLite  |AWS	   |Jasmine|
+|Inkscape	    |HTML5	  |Python3  |SQLite  |AWS	   |Pytest|
 |.			        |CSS3		  |[Flask](https://flask.palletsprojects.com/en/1.1.x/)   |[SQL Alchemy](https://www.sqlalchemy.org/)|Git      |Lighthouse|
 |.			        |Bootstrap 4|[Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)	|[Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)	  |.		   |.|
 |.			        |[Jinja](https://jinja.palletsprojects.com/en/2.11.x/)    |.		   |.		    |.		     |.|
@@ -33,7 +33,6 @@
 -   Login, sign-up
 -	  REST API (create, read, update) for stocks
 -   Security to prevent certain transactions using error codes 400-404
--	  [IEX API](iexcloud.io/)
 
 ## 💡Lessons Learned
 -   Database design and Create, Read, Update in SQL
@@ -77,6 +76,19 @@ $ python application.py
 ```
 $ export FLASK_APP=application.py
 $ flask run
+```
+-   Lastly, create a SQL database named `finances.db`
+-   To initialize the SQL database in the python shell, execute:
+```
+$ python
+$ from application import db
+$ db.create_all()
+```
+-   To initialize the database with SQL command-line arguemnts:
+```
+CREATE TABLE portfolio (user_id INTEGER, symbol TEXT, current_shares INTEGER)
+CREATE TABLE bought (buyer_id INTEGER, time NUMERIC, symbol TEXT, shares_bought INTEGER, price_bought INTEGER)
+CREATE TABLE sold (seller_id INTEGER, time NUMERIC, symbol TEXT, shares_sold INTEGER, price_sold INTEGER)
 ```
 
 ## 📐 Tests
