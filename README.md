@@ -24,7 +24,7 @@
 ## 🛠 Technologies
 |Graphic Design|Front-End|Back-End|Database|Deployment|Testing|
 |------------- | ------- | ------ | ------ | -------- | -------|
-|Inkscape	    |HTML5	  |Python3  |SQLite  |AWS Elastic Beanstalk	   |Pytest|
+|Inkscape	    |HTML5	  |Python3  |SQLite and MySQL  |AWS Elastic Beanstalk	   |Pytest|
 |.			        |CSS3		  |[Flask](https://flask.palletsprojects.com/en/1.1.x/)   |[SQL Alchemy](https://www.sqlalchemy.org/)|Git      |Lighthouse|
 |.			        |Bootstrap 4|[Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)	|[Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)	  |.		   |.|
 |.			        |[Jinja](https://jinja.palletsprojects.com/en/2.11.x/)    |.		   |[RDS](https://aws.amazon.com/rds/)		    |.		     |.|
@@ -37,6 +37,7 @@
 ## 💡Lessons Learned
 -   Database design and Create, Read, Update in SQL
 -   Rewrote the entire application to use Flask SQL Alchemy
+-   Developed MVP of application with SQLite locally and Deployed with MySQL on [RDS](https://aws.amazon.com/rds/) instance
 -   Using Flask as a server-side framework
 -   Python Class/Models and Schemas
 -   Jinja templating
@@ -86,9 +87,38 @@ $ db.create_all()
 ```
 -   To initialize the database with SQL command-line arguemnts:
 ```
-CREATE TABLE portfolio (user_id INTEGER, symbol TEXT, current_shares INTEGER)
-CREATE TABLE bought (buyer_id INTEGER, time NUMERIC, symbol TEXT, shares_bought INTEGER, price_bought INTEGER)
-CREATE TABLE sold (seller_id INTEGER, time NUMERIC, symbol TEXT, shares_sold INTEGER, price_sold INTEGER)
+CREATE TABLE users (
+	id INTEGER NOT NULL, 
+	username VARCHAR(50), 
+	hash VARCHAR(200), 
+	cash INTEGER, 
+	PRIMARY KEY (id)
+)
+CREATE TABLE portfolio (
+	id INTEGER NOT NULL, 
+	user_id INTEGER, 
+	symbol VARCHAR(5), 
+	current_shares INTEGER, 
+	PRIMARY KEY (id)
+)
+CREATE TABLE bought (
+	id INTEGER NOT NULL, 
+	buyer_id INTEGER, 
+	time VARCHAR, 
+	symbol VARCHAR(5), 
+	shares_bought INTEGER, 
+	price_bought FLOAT, 
+	PRIMARY KEY (id)
+)
+CREATE TABLE sold (
+	id INTEGER NOT NULL, 
+	seller_id INTEGER, 
+	time VARCHAR(100), 
+	symbol VARCHAR(5), 
+	shares_sold INTEGER, 
+	price_sold FLOAT, 
+	PRIMARY KEY (id)
+)
 ```
 
 ## 📐 Tests
