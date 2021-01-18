@@ -56,7 +56,7 @@ To run this project locally:
 -   In your terminal, navigate to the root project directory and run the following commands
 -   To install the dependencies
 ```
-$ pipenv install flask flask-session flask-sqlalchemy requests flask-marshmallow marshmallow-sqlalchemy
+$ pipenv install -r requirements.txt
 ```
 -   You'll need to register for an API key in order to be able to query IEX’s data
 -   [Register](iexcloud.io/cloud-login#/register/) for an account
@@ -79,6 +79,7 @@ $ export FLASK_APP=application.py
 $ flask run
 ```
 -   Lastly, create a SQL database named `finances.db`
+-		To initialize the SQL database within application.py, add `db.create_all()` below `# Initialize Schemas`. Once the code runs and the you've verified the database exists, remove `db.create_all()` 
 -   To initialize the SQL database in the python shell, execute:
 ```
 $ python

@@ -51,6 +51,7 @@ if 'RDS_HOSTNAME' in os.environ:
 # application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'finances.db')
 application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + os.environ['RDS_USERNAME'] + ':' + os.environ['RDS_PASSWORD'] + '@' + os.environ['RDS_HOSTNAME'] + '/' + os.environ['RDS_DB_NAME']
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+application.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(application)
 
 # Configure marshmallow
@@ -59,8 +60,8 @@ ma = Marshmallow(application)
 # Create classes/models
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String)
-    hash = db.Column(db.String)
+    username = db.Column(db.String(length=50))
+    hash = db.Column(db.String(length=200))
     cash = db.Column(db.Integer)
     # Create initializer/constructor
     def __init__(self, username, hash, cash):
@@ -70,7 +71,7 @@ class Users(db.Model):
 class Portfolio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer)
-    symbol = db.Column(db.String(5))
+    symbol = db.Column(db.String(length=5))
     current_shares = db.Column(db.Integer)
     # Create initializer/constructor
     def __init__(self, user_id, symbol, current_shares):
@@ -80,8 +81,8 @@ class Portfolio(db.Model):
 class Bought(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     buyer_id = db.Column(db.Integer)
-    time = db.Column(db.String)
-    symbol = db.Column(db.String(5))
+    time = db.Column(db.String(length=100))
+    symbol = db.Column(db.String(length=5))
     shares_bought = db.Column(db.Integer)
     price_bought = db.Column(db.Float)
     # Create initializer/constructor
@@ -94,8 +95,8 @@ class Bought(db.Model):
 class Sold(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     seller_id = db.Column(db.Integer)
-    time = db.Column(db.String)
-    symbol = db.Column(db.String(5))
+    time = db.Column(db.String(length=100))
+    symbol = db.Column(db.String(length=5))
     shares_sold = db.Column(db.Integer)
     price_sold = db.Column(db.Float)
     # Create initializer/constructor
