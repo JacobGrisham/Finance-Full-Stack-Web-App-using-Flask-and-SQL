@@ -75,7 +75,7 @@ $ API_KEY=<value>
 ```
 $ python application.py 
 ```
--   Alternatively, execute (without debugging):
+-   Alternatively, execute (with debugging):
 ```
 $ export FLASK_APP=application.py
 $ flask run

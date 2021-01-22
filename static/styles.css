@@ -10,6 +10,11 @@ nav img
     width: 2rem;
 }
 
+.navbar-nav {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 .register
 {
     border-radius: 3rem;
@@ -45,27 +50,48 @@ main img
     background-color: transparent;
 }
 
-footer
-{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    text-align: center;
+#freepik_stories-investing {
+    height: auto;
+    width: auto;
+}
+
+@media only screen and (min-width: 767.98px) {
+    #freepik_stories-investing {
+        width: 25rem;
+    }
+}
+@media only screen and (min-width: 991.98px) {
+    #freepik_stories-investing {
+        width: auto;
+    }
+}
+
+
+@media only screen and (min-width: 767.98px) {
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
 }
 
 .background
 {
     position: absolute;
     z-index: -10;
-    top: 0;
     right: 0;
 }
 
 #home
 {
     width: 100vw;
+}
+@media only screen and (max-width: 767.98px) {
+    #home
+    {
+        top: auto;
+        transform: rotate(180deg);
+    }
 }
 
 .error {

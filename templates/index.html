@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block main %}
+<div class="container">
     <img src="../static/images/home.svg" class="background" id="home">
     <h1>Home</h1>
-    <table class="table table-hover">
+    <table class="table table-hover table-md-responsive">
         <tr class="thead-light">
             <th scope="col">Stocks Owned</th>
             <th scope="col">Number of Shares</th>
@@ -35,4 +36,5 @@
             <td><strong>{{ grand_total }}</strong></td>
          </tr>
     </table>
+</div>
 {% endblock %}

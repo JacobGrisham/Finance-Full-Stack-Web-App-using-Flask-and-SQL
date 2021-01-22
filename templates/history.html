@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block main %}
+<div class="container">
     <img src="../static/images/history.svg" class="background">
     <h1>History</h1>
-    <table class="table table-hover">
+    <table class="table table-hover table-md-responsive">
         <tr class="thead-light">
             <th scope="col">Stocks</th>
             <th scope="col">Shares Bought</th>
@@ -38,4 +39,5 @@
         </tr>
         {% endfor %}
     </table>
+</div>
 {% endblock %}
