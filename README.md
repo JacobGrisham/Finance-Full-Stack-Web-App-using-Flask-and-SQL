@@ -26,14 +26,14 @@
 ## 🛠 Technologies
 |Graphic Design|Front-End|Back-End|Database|Deployment|Testing|
 |------------- | ------- | ------ | ------ | -------- | -------|
-|Inkscape	    |HTML5	  |Python3  |SQLite and MySQL  |AWS Elastic Beanstalk	   |Pytest|
-|.			        |CSS3		  |[Flask](https://flask.palletsprojects.com/en/1.1.x/)   |[SQL Alchemy](https://www.sqlalchemy.org/)|Git      |Lighthouse|
-|.			        |Bootstrap 4|[Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)	|[Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)	  |.		   |.|
-|.			        |[Jinja](https://jinja.palletsprojects.com/en/2.11.x/)    |.		   |[RDS](https://aws.amazon.com/rds/)		    |.		     |.|
+|Inkscape	    |HTML5	  |Python3  |SQLite and MySQL  |[AWS Elastic Beanstalk]()	   |Pytest|
+|.			      |CSS3		  |[Flask](https://flask.palletsprojects.com/en/1.1.x/)   |[SQL Alchemy](https://www.sqlalchemy.org/)|[AWS RDS](https://aws.amazon.com/rds/)      |Lighthouse|
+|.			        |Bootstrap 4|[Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)	|[Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)	  |Git		   |.|
+|.			        |[Jinja](https://jinja.palletsprojects.com/en/2.11.x/)    |.		   |.		    |.		     |.|
 
 ## ⚙️ Features
 -   Login, sign-up
--	  REST API (create, read, update) for stocks
+-	  Create, Read, and Update for stocks
 -   Security to prevent certain transactions using error codes 400-404
 
 ## 💡Lessons Learned
@@ -81,7 +81,7 @@ $ export FLASK_APP=application.py
 $ flask run
 ```
 -   Lastly, create a SQL database named `finances.db`
--		To initialize the SQL database within application.py, add `db.create_all()` below `# Initialize Schemas`. Once the code runs and the you've verified the database exists, remove `db.create_all()` 
+-		To initialize the SQL database within application.py, add `db.create_all()` below `Initialize Schemas`. Once the code runs and the you've verified the database exists, remove `db.create_all()`
 -   To initialize the SQL database in the python shell, execute:
 ```
 $ python
