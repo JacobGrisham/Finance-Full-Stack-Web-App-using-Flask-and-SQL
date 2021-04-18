@@ -1,4 +1,5 @@
 # [Finance: Full Stack Web App using Flask and SQL](http://flask-env.eba-z6mwdiua.us-west-2.elasticbeanstalk.com/)
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://flask-env.eba-z6mwdiua.us-west-2.elasticbeanstalk.com/)
 [![Build Status](https://travis-ci.org/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL.svg?branch=master)](https://travis-ci.org/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/323b83dec4c44b78bde6a4b2aa3477ec)](https://www.codacy.com/gh/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL&amp;utm_campaign=Badge_Grade)
 [![Updates](https://pyup.io/repos/github/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL/shield.svg)](https://pyup.io/repos/github/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL/)
@@ -10,8 +11,6 @@
 -   I styled the application myself, with illustrations provided by [Freepik](http://www.freepik.com/). Landing page and favicon cloned after [Robinhood](https://robinhood.com/us/en/)
 
 ![Finance Program Demo](img/demo.gif)
-
-## 🖥 [Live Application](http://flask-env.eba-z6mwdiua.us-west-2.elasticbeanstalk.com/)
 
 ## 🛠 Technologies
 |Graphic Design|Front-End|Back-End|Database|Deployment|Testing|
