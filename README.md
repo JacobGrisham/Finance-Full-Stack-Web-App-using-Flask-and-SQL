@@ -13,16 +13,6 @@
 
 ## 🖥 [Live Application](http://flask-env.eba-z6mwdiua.us-west-2.elasticbeanstalk.com/)
 
-## Table of Contents
--   [Technologies](#technologies)
--   [Features](#features)
--   [Lessons Learned](#lessons-learned)
--   [Project Status](#project-status)
--   [Getting Started](#getting-started)
--   [Tests](#tests)
--   [Attribution](#attribution)
--   [License](#license)
-
 ## 🛠 Technologies
 |Graphic Design|Front-End|Back-End|Database|Deployment|Testing|
 |------------- | ------- | ------ | ------ | -------- | -------|
