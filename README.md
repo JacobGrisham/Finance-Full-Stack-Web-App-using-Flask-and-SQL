@@ -13,19 +13,6 @@
 
 ![Finance Program Demo](img/demo.gif)
 
-## 🛠 Technologies
-|Graphic Design|Front-End|Back-End|Database|Deployment|Testing|
-|------------- | ------- | ------ | ------ | -------- | -------|
-|Inkscape	    |HTML5	  |Python3  |SQLite and MySQL  |[AWS Elastic Beanstalk]()	   |Pytest|
-|.			      |CSS3		  |[Flask](https://flask.palletsprojects.com/en/1.1.x/)   |[SQL Alchemy](https://www.sqlalchemy.org/)|[AWS RDS](https://aws.amazon.com/rds/)      |Lighthouse|
-|.			        |Bootstrap 4|[Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)	|[Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)	  |Git		   |.|
-|.			        |[Jinja](https://jinja.palletsprojects.com/en/2.11.x/)    |.		   |.		    |.		     |.|
-
-## ⚙️ Features
--   Login, sign-up
--	  Create, Read, and Update for stocks
--   Security to prevent certain transactions using error codes 400-404
-
 ## 💡Lessons Learned
 -   Database design and Create, Read, Update in SQL
 -   Rewrote the entire application to use Flask SQL Alchemy
@@ -40,11 +27,23 @@
 -   Continous integration and continuous deployment with Travis CI
 -   Deploying application to AWS with [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance and SQL database to a separate [RDS](https://aws.amazon.com/rds/) instance
 
-## ✅ Project Status
--	  Add tests
+## 🛠 Technologies
+|Graphic Design|Front-End|Back-End|Database|Deployment|Testing|
+|------------- | ------- | ------ | ------ | -------- | -------|
+|Inkscape	    |HTML5	  |Python3  |SQLite and MySQL  |[AWS Elastic Beanstalk]()	   |Pytest|
+|.			      |CSS3		  |[Flask](https://flask.palletsprojects.com/en/1.1.x/)   |[SQL Alchemy](https://www.sqlalchemy.org/)|[AWS RDS](https://aws.amazon.com/rds/)      |Lighthouse|
+|.			        |Bootstrap 4|[Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)	|[Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)	  |Git		   |.|
+|.			        |[Jinja](https://jinja.palletsprojects.com/en/2.11.x/)    |.		   |.		    |.		     |.|
+
+## ⚖️ Methodology
+
+## ⚙️ Features
+-   Login, sign-up
+-   Security to prevent certain transactions using error codes 400-404
+-   Create, Read, and Update for stocks
 
 ## 🚀 Getting Started
-To run this project locally:
+### To run this project on your system:
 -   In your terminal, navigate to the root project directory and run the following commands
 -   To install the dependencies
 ```
