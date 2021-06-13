@@ -50,15 +50,16 @@
 $ pipenv install -r requirements.txt
 ```
 -   You'll need to register for an API key in order to be able to query IEX’s data
--   [Register](iexcloud.io/cloud-login#/register/) for an account
--   Enter your email address and a password, and click “Create account”
--   On the next page, scroll down to choose the Start (free) plan
--   Once you’ve confirmed your account via a confirmation email, sign in to iexcloud.io
--   Click API Tokens
--   Copy the key that appears under the Token column (it should begin with pk_)
--   Create a .env file and paste the following code into it
+	-   [Register](iexcloud.io/cloud-login#/register/) for an account
+	-   Enter your email address and a password, and click “Create account”
+	-   On the next page, scroll down to choose the Start (free) plan
+	-   Once you’ve confirmed your account via a confirmation email, sign in to iexcloud.io
+	-   Click API Tokens
+	-   Copy the key that appears under the Token column (it should begin with pk_) into the `<value>` in the next step
+-   Create a .env file and paste the following into it: `API_KEY=<value>`
+-   Activate the virtual environment
 ```
-$ API_KEY=<value>
+$ pipenv shell
 ```
 -   To start the web server, execute (without debugging):
 ```
@@ -70,7 +71,7 @@ $ export FLASK_APP=application.py
 $ flask run
 ```
 -   Lastly, create a SQL database named `finances.db`
--		To initialize the SQL database within application.py, add `db.create_all()` below `Initialize Schemas`. Once the code runs and the you've verified the database exists, remove `db.create_all()`
+-   To initialize the SQL database within application.py, add `db.create_all()` below `Initialize Schemas`. Once the code runs and the you've verified the database exists, remove `db.create_all()`
 -   To initialize the SQL database in the python shell, execute:
 ```
 $ python
