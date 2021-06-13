@@ -7,7 +7,7 @@
 [![Python 3](https://pyup.io/repos/github/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL/python-3-shield.svg)](https://pyup.io/repos/github/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL/)
 ## Homework from [Harvard's Introduction to Computer Science CS50 hosted on eDX](https://www.edx.org/course/cs50s-introduction-to-computer-science)
 ## 🎓 [Web Track](https://cs50.harvard.edu/x/2020/tracks/web/)
--   [Finance](https://cs50.harvard.edu/x/2020/tracks/web/finance/): Web application via which you can manage portfolios of stocks. This tool allows you to check real stocks’ actual prices and portfolios’ values, it will also let you buy (okay, “buy”) and sell (okay, “sell”) stocks by querying [IEX](iexcloud.io/) for stocks’ prices.
+-   [Finance](https://cs50.harvard.edu/x/2020/tracks/web/finance/): Web application via which you can manage portfolios of stocks. This tool allows you to check real stocks’ actual prices and portfolios’ values, it will also let you buy (okay, “buy”) and sell (okay, “sell”) stocks by querying [IEX Stock Quote API](https://iexcloud.io/docs/api/#quote) for stocks’ prices.
 -   I wrote all the code in the templates directory. I wrote most of the code in application.py. Some of the code in helpers.py was provided by instructor
 -   I styled the application myself, with illustrations provided by [Freepik](http://www.freepik.com/). Landing page and favicon cloned after [Robinhood](https://robinhood.com/us/en/)
 
@@ -21,8 +21,8 @@
 -   Python Class/Models and Schemas
 -   Jinja templating
 -   Password hashing using Werkzeug
--   Parsing data from API
--   Parsing data from SQL queries
+-   Parsing data from API with python
+-   Parsing data from SQL queries with python
 -   Calculations using data from API and database
 -   Continous integration and continuous deployment with Travis CI
 -   Deploying application to AWS with [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance and SQL database to a separate [RDS](https://aws.amazon.com/rds/) instance
@@ -112,7 +112,7 @@ CREATE TABLE sold (
 ## 📐 Tests
 
 ## 📣 Attribution
--   Stock prices pulled from [IEX API](iexcloud.io/)
+-   Stock prices pulled from [IEX Stock Quote API](https://iexcloud.io/docs/api/#quote)
 -   Feather icon made by [Freepik](http://www.freepik.com/) from [Flaticon](https://www.flaticon.com/free-icon/feather_105145?term=feather&page=1&position=85&related_item_id=105145)
 -   Illustrations by [Freepik Storyset](https://storyset.com/people/rafiki)
 
