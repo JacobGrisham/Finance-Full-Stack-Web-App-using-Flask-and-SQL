@@ -118,4 +118,4 @@ CREATE TABLE sold (
 -   Illustrations by [Freepik Storyset](https://storyset.com/people/rafiki)
 
 ## 🔒 License
-Copyright Notice and Statement: currently not offering any license. Permission only to view and download.
+Copyright Notice and Statement: currently not offering any license. Permission only to view and download. Refer to [choose a license](https://choosealicense.com/no-permission/) for more info.
