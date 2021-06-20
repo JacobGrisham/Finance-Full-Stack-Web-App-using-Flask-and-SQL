@@ -1,4 +1,4 @@
-# [Finance: Full Stack Web App using Flask and SQL](http://flask-env.eba-z6mwdiua.us-west-2.elasticbeanstalk.com/)
+# [Finance: Full Stack Web App using Flask and SQL](http://robynhood.app/)
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://flask-env.eba-z6mwdiua.us-west-2.elasticbeanstalk.com/)
 ![Security Headers](https://img.shields.io/security-headers?url=http%3A%2F%2Fflask-env.eba-z6mwdiua.us-west-2.elasticbeanstalk.com%2F)
 [![Build Status](https://travis-ci.org/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL.svg?branch=master)](https://travis-ci.org/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL)
@@ -26,6 +26,7 @@
 -   Calculations using data from API and database
 -   Continous integration and continuous deployment with Travis CI
 -   Deploying application to AWS with [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance and SQL database to a separate [RDS](https://aws.amazon.com/rds/) instance
+-   Using AWS Cloudfront as Content Delivery Network (CDN) and connecting Google Domains custom domain to AWS CDN
 
 ## 🛠 Technologies
 |Graphic Design|Front-End|Back-End|Database|Deployment|Testing|
