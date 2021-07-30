@@ -48,6 +48,8 @@
 -   Security to prevent certain transactions using error codes 400-404
 -   Create, Read, and Update for stocks
 
+## 📐 Tests
+
 ## 🚀 Getting Started
 ### To run this project on your system:
 -   In your terminal, navigate to the root project directory and run the following commands
@@ -115,8 +117,6 @@ CREATE TABLE sold (
 	price_sold FLOAT
 )
 ```
-
-## 📐 Tests
 
 ## 📣 Attribution
 -   Stock prices pulled from [IEX Stock Quote API](https://iexcloud.io/docs/api/#quote)
