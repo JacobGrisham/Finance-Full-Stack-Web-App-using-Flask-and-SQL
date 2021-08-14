@@ -52,8 +52,13 @@
 
 ## 🚀 Getting Started
 ### To run this project on your system:
+-   Ensure that `python3` and `python3-pip` are installed on your system
 -   In your terminal, navigate to the root project directory and run the following commands
--   To install the dependencies
+-   Activate the virtual environment
+```
+$ pipenv shell
+```
+-   Install the dependencies
 ```
 $ pipenv install -r requirements.txt
 ```
@@ -65,10 +70,6 @@ $ pipenv install -r requirements.txt
 	-   Click API Tokens
 	-   Copy the key that appears under the Token column (it should begin with pk_) into the `<value>` in the next step
 -   Create a .env file and paste the following into it: `API_KEY=<value>`
--   Activate the virtual environment
-```
-$ pipenv shell
-```
 -   To start the web server, execute (without debugging):
 ```
 $ python application.py 
