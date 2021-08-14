@@ -87,22 +87,22 @@ $ python
 $ from application import db
 $ db.create_all()
 ```
--   To initialize the database with SQL command-line arguemnts:
+-   To initialize the database with SQL command-line arguemnts (using MySQL syntax and running one `CREATE TABLE` command at a time):
 ```
 CREATE TABLE users (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	username VARCHAR(50) UNIQUE, 
 	hash VARCHAR(200) NOT NULL, 
 	cash INTEGER
 )
 CREATE TABLE portfolio (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	user_id INTEGER, 
 	symbol VARCHAR(5), 
 	current_shares INTEGER
 )
 CREATE TABLE bought (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	buyer_id INTEGER, 
 	time VARCHAR, 
 	symbol VARCHAR(5), 
@@ -110,7 +110,7 @@ CREATE TABLE bought (
 	price_bought FLOAT
 )
 CREATE TABLE sold (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	seller_id INTEGER, 
 	time VARCHAR(100), 
 	symbol VARCHAR(5), 
