@@ -20,26 +20,29 @@
 
 ## 💡Lessons Learned
 -   Database design and Create, Read, Update in SQL
--   Rewrote the entire application to use Flask SQL Alchemy
--   Developed MVP of application with SQLite locally and Deployed with MySQL on [RDS](https://aws.amazon.com/rds/) instance
--   Using Flask as a server-side framework
+-   Rewrote the entire application to use [Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/), an extension of [SQL Alchemy](https://www.sqlalchemy.org/)
+-   Developed MVP of application with SQLite locally and Deployed with MySQL
+-   Using [Flask](https://flask.palletsprojects.com/en/1.1.x/) as a server-side framework
 -   Python Class/Models and Schemas
--   Jinja templating
--   Password hashing using Werkzeug
+-   [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) templating
+-   Password hashing using [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)
 -   Parsing data from API with python
 -   Parsing data from SQL queries with python
 -   Calculations using data from API and database
 -   Continous integration and continuous deployment with Travis CI
--   Deploying application to AWS with [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance and SQL database to a separate [RDS](https://aws.amazon.com/rds/) instance
--   Using AWS Cloudfront as Content Delivery Network (CDN) and connecting Google Domains custom domain to AWS CDN
+-   Hosting application on AWS with an [EC2](https://aws.amazon.com/ec2/) instance with an [Ubuntu](https://ubuntu.com/) operating system, [Gunicorn](https://gunicorn.org/) WSGI HTTP server, and [Nginx](https://www.nginx.com/) reverse proxy
+-   Hosting MySQL database on AWS with a [RDS](https://aws.amazon.com/rds/) instance
+-   (Deprecated) Hosting application on AWS with an [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance and MySQL database on AWS with a [RDS](https://aws.amazon.com/rds/) instance
+-   Using AWS Cloudfront as a Content Delivery Network (CDN) and connecting Google Domains custom domain to AWS CDN
 
 ## 🛠 Technologies
-|Graphic Design|Front-End|Back-End|Database|Deployment|Testing|
-|------------- | ------- | ------ | ------ | -------- | -------|
-|Inkscape	    |HTML5	  |Python3  |SQLite and MySQL  |[AWS Elastic Beanstalk]()	   |Pytest|
-|.			      |CSS3		  |[Flask](https://flask.palletsprojects.com/en/1.1.x/)   |[SQL Alchemy](https://www.sqlalchemy.org/)|[AWS RDS](https://aws.amazon.com/rds/)      |Lighthouse|
-|.			        |Bootstrap 4|[Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)	|[Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)	  |Git		   |.|
-|.			        |[Jinja](https://jinja.palletsprojects.com/en/2.11.x/)    |.		   |.		    |.		     |.|
+|Graphic Design |Front-End	|Back-End	|Database	|Deployment	|Testing 	|
+| ------------- | ------------- | ------------- | ------------- | ------------- | --------------|
+|Inkscape	|HTML5	 	|Python3  	|MySQL  	|AWS EC2   	|Pytest		|
+|Freepik	|CSS3	 	|Flask		|SQL Alchemy	|Ubuntu      	|Lighthouse	|
+|.		|Bootstrap 4	|Werkzeug	|Flask SQL Alchemy|Gunicorn	|.		|
+|.		|Jinja		|.		|.		|Nginx 		|.		|
+|.		|.		|.	  	|.	   	|AWS RDS	|.       	|
 
 ## ⚖️ Methodology
 
@@ -87,28 +90,28 @@ $ python
 $ from application import db
 $ db.create_all()
 ```
--   To initialize the database with SQL command-line arguemnts (using MySQL syntax and running one `CREATE TABLE` command at a time):
+-   To initialize the database with SQL command-line arguemnts (using MySQL syntax) run each `CREATE TABLE` command (one at a time):
 ```
 CREATE TABLE users (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	username VARCHAR(50) UNIQUE, 
 	hash VARCHAR(200) NOT NULL, 
 	cash INTEGER
-)
+);
 CREATE TABLE portfolio (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	user_id INTEGER, 
 	symbol VARCHAR(5), 
 	current_shares INTEGER
-)
+);
 CREATE TABLE bought (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	buyer_id INTEGER, 
-	time VARCHAR, 
+	time VARCHAR(100), 
 	symbol VARCHAR(5), 
 	shares_bought INTEGER, 
 	price_bought FLOAT
-)
+);
 CREATE TABLE sold (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	seller_id INTEGER, 
@@ -116,7 +119,7 @@ CREATE TABLE sold (
 	symbol VARCHAR(5), 
 	shares_sold INTEGER, 
 	price_sold FLOAT
-)
+);
 ```
 
 ## 📣 Attribution
