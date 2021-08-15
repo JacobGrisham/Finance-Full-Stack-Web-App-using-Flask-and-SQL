@@ -31,9 +31,13 @@
 -   Calculations using data from API and database
 -   Continous integration and continuous deployment with Travis CI
 -   Hosting application on AWS with an [EC2](https://aws.amazon.com/ec2/) instance with an [Ubuntu](https://ubuntu.com/) operating system, [Gunicorn](https://gunicorn.org/) WSGI HTTP server, and [Nginx](https://www.nginx.com/) reverse proxy
+-   Using [Ubuntu](https://ubuntu.com/) as operating system
+-   [Gunicorn](https://gunicorn.org/) configuration
+-   [Nginx](https://www.nginx.com/) configuration
 -   Hosting MySQL database on AWS with a [RDS](https://aws.amazon.com/rds/) instance
 -   (Deprecated) Hosting application on AWS with an [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance and MySQL database on AWS with a [RDS](https://aws.amazon.com/rds/) instance
 -   Using AWS Cloudfront as a Content Delivery Network (CDN) and connecting Google Domains custom domain to AWS CDN
+-   Error logging with [Sentry](https://sentry.io/welcome/) for hosted application in production
 
 ## 🛠 Technologies
 |Graphic Design |Front-End	|Back-End	|Database	|Deployment	|Testing 	|
