@@ -21,7 +21,7 @@
 ## 💡Lessons Learned
 -   Database design and Create, Read, Update in SQL
 -   Rewrote the entire application to use [Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/), an extension of [SQL Alchemy](https://www.sqlalchemy.org/)
--   Developed MVP of application with SQLite locally and Deployed with MySQL
+-   Developed MVP of application with [SQLite](https://www.sqlite.org/index.html) locally and Deployed with [MySQL](https://www.mysql.com/)
 -   Using [Flask](https://flask.palletsprojects.com/en/1.1.x/) as a server-side framework
 -   Python Class/Models and Schemas
 -   [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) templating
@@ -29,7 +29,7 @@
 -   Parsing data from API with python
 -   Parsing data from SQL queries with python
 -   Calculations using data from API and database
--   Continous integration and continuous deployment with Travis CI
+-   Continous integration and continuous deployment with [Travis CI](https://travis-ci.org/)
 -   Hosting application on AWS with an [EC2](https://aws.amazon.com/ec2/) instance with an [Ubuntu](https://ubuntu.com/) operating system, [Gunicorn](https://gunicorn.org/) WSGI HTTP server, and [Nginx](https://www.nginx.com/) reverse proxy
 -   Using [Ubuntu](https://ubuntu.com/) as operating system
 -   [Gunicorn](https://gunicorn.org/) configuration
@@ -47,8 +47,12 @@
 |.		|Bootstrap 4	|Werkzeug	|Flask SQL Alchemy|Gunicorn	|.		|
 |.		|Jinja		|.		|.		|Nginx 		|.		|
 |.		|.		|.	  	|.	   	|AWS RDS	|.       	|
+|.		|.		|.		|.		|Sentry		|.		|
+|.		|.		|.		|.		|Travis CI	|.		|
 
 ## ⚖️ Methodology
+-   Initially hosted application on AWS [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) for a gradual introduction to AWS. Previously only used Heroku to host full-stack web applications, so I chose a similar IaaS offered by AWS. After numerous Elastic Beanstalk policy changes and disconnections, decided to go to the next level down in AWS, which is hosting this application on an EC2 instance. This offered a lot of experience and opportunities for learning about web servers.
+-   Ubuntu as OS since it's the most popular operating system for web servers. Gunicorn as the WSGI since it's fast. Nginx as the reverse proxy since it was made with this optimization in mind.
 
 ## ⚙️ Features
 -   Login, sign-up
