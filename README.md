@@ -38,7 +38,8 @@
 -   Hosting Redis cache on AWS with an [Elasticache](https://aws.amazon.com/elasticache/) instance
 -   Using AWS Cloudfront as a Content Delivery Network (CDN) and connecting Google Domains custom domain to AWS CDN
 -   Error logging with [Sentry](https://sentry.io/welcome/) for hosted application in production
--   Continous integration and continuous deployment with [Travis CI](https://travis-ci.org/) and AWS CodeDeploy
+-   Continous integration with [Jenkins](https://www.jenkins.io/) and continuous deployment with and [AWS CodeDeploy](https://aws.amazon.com/codedeploy/)
+-   (Deprecated) Continous integration with [Travis CI](https://travis-ci.org/)
 -   (Deprecated) Hosting application on AWS with an [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance and MySQL database on AWS with a [RDS](https://aws.amazon.com/rds/) instance
 
 ## 🛠 Technologies
@@ -52,7 +53,7 @@
 |.		|.		|.	  	|.	   	|AWS RDS	|.       	|
 |.		|.		|.		|.		|AWS Elasticache|.		|
 |.		|.		|.		|.		|AWS Cloudfront	|.		|
-|.		|.		|.		|.		|Travis CI	|.		|
+|.		|.		|.		|.		|Jenkins	|.		|
 |.		|.		|.		|.		|AWS CodeDeploy	|.		|
 
 ## ⚖️ Methodology
