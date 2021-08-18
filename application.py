@@ -1,4 +1,6 @@
 import os
+import sentry_sdk
+import redis
 from datetime import datetime
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from flask_session import Session
@@ -7,8 +9,19 @@ from flask_marshmallow import Marshmallow
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
-
+from sentry_sdk.integrations.flask import FlaskIntegration
 from helpers import badRequest, noData, unauthorized, forbidden, notFound, login_required, lookup, usd
+
+# Configure error and performance logging with Sentry
+sentry_sdk.init(
+    dsn="https://4c4bfcc7d0a444089fd34b8e12a890eb@o958423.ingest.sentry.io/5907180",
+    integrations=[FlaskIntegration()],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=0.5
+)
 
 # Configure application
 application = Flask(__name__)
@@ -28,11 +41,14 @@ def after_request(response):
 # Custom filter
 application.jinja_env.filters["usd"] = usd
 
-# Configure session to use filesystem (instead of signed cookies)
-application.config["SESSION_FILE_DIR"] = mkdtemp()
-application.config["SESSION_PERMANENT"] = False
-application.config["SESSION_TYPE"] = "filesystem"
-Session(application)
+# Configure Redis for storing the session data on the server-side
+application.secret_key = 'BAD_SECRET_KEY'
+application.config['SESSION_TYPE'] = 'redis'
+application.config['SESSION_PERMANENT'] = False
+application.config['SESSION_USE_SIGNER'] = True
+application.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
+# Create and initialize the Flask-Session object AFTER `app` has been configured
+server_session = Session(application)
 
 # Configure deployemnt to use AWS RDS database
 if 'RDS_HOSTNAME' in os.environ:
@@ -341,15 +357,25 @@ def login():
         rows = Users.query.filter_by(username=request.form.get("username")).first()
         #("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
 
-        # Ensure username exists and password is correct
-        if rows.username != request.form.get("username") or not check_password_hash(rows.hash, request.form.get("password")):
-            return unauthorized("invalid username and/or password")
+        # Ensure user exists
+        try:
+            rows.username
 
-        # Remember which user has logged in
-        session["user_id"] = rows.id
+        # NoneType is returned and therefore username does't exist in database
+        except AttributeError:
+             return noData("User doesn't exist")
 
-        # Redirect user to home page
-        return redirect("/home")
+        # Finish logging user in
+        else:
+            # Ensure username and password is correct
+            if rows.username != request.form.get("username") or not check_password_hash(rows.hash, request.form.get("password")):
+                return unauthorized("invalid username and/or password")
+
+            # Remember which user has logged in
+            session["user_id"] = rows.id
+
+            # Redirect user to home page
+            return redirect("/home")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -394,10 +420,12 @@ def register():
         # User error handling: stop empty username and password fields, stop usernames already taken, stop non-matching passwords
         if not username:
             return noData("Please enter a username")
-        existing = Users.query.filter_by(username=username)
 
+        existing = Users.query.filter_by(username=username)
+        print("EXISTING USER: ", existing)
         #("SELECT * FROM users WHERE username = :username", username=username)
         if existing == username:
+            print("EXISTING USER ALREADY!: ", existing)
             return forbidden("Username already taken")
         password = request.form.get("password")
         if not password:
@@ -415,8 +443,12 @@ def register():
         db.session.commit()
         #("INSERT INTO users (username, hash) VALUES (:username, :hash)", username=username, hash=hashed)
 
-        # Bring user to login page
-        return redirect("/login")
+        # Automatically sign in after creating account
+        rows = Users.query.filter_by(username=request.form.get("username")).first()
+        session["user_id"] = rows.id
+
+        # Redirect user to home page
+        return redirect("/home")
 
 
 @application.route("/sell", methods=["GET", "POST"])
@@ -528,6 +560,6 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 # Run Server
-if __name__ == '__main__':
-    application.run(debug = True)
 # Run the following in the command line: python application.py
+if __name__ == '__main__':
+    application.run(host='0.0.0.0') # Production server
