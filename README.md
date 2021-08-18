@@ -20,28 +20,45 @@
 
 ## 💡Lessons Learned
 -   Database design and Create, Read, Update in SQL
--   Rewrote the entire application to use Flask SQL Alchemy
--   Developed MVP of application with SQLite locally and Deployed with MySQL on [RDS](https://aws.amazon.com/rds/) instance
--   Using Flask as a server-side framework
+-   Rewrote the entire application to use [Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/), an extension of [SQL Alchemy](https://www.sqlalchemy.org/)
+-   Developed MVP of application with [SQLite](https://www.sqlite.org/index.html) locally and Deployed with [MySQL](https://www.mysql.com/)
+-   Using [Flask](https://flask.palletsprojects.com/en/1.1.x/) as a server-side micro-framework
 -   Python Class/Models and Schemas
--   Jinja templating
--   Password hashing using Werkzeug
+-   [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) templating
+-   Password hashing using [Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)
+-   Caching user sessions with [Redis](https://redis.io/) and [Flask-sessions](https://flask-session.readthedocs.io/en/latest/)
 -   Parsing data from API with python
 -   Parsing data from SQL queries with python
 -   Calculations using data from API and database
--   Continous integration and continuous deployment with Travis CI
--   Deploying application to AWS with [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance and SQL database to a separate [RDS](https://aws.amazon.com/rds/) instance
--   Using AWS Cloudfront as Content Delivery Network (CDN) and connecting Google Domains custom domain to AWS CDN
+-   Hosting application on AWS with an [EC2](https://aws.amazon.com/ec2/) instance with an [Ubuntu](https://ubuntu.com/) operating system, [Gunicorn](https://gunicorn.org/) WSGI HTTP server, and [Nginx](https://www.nginx.com/) front-end reverse proxy
+-   Using [Ubuntu](https://ubuntu.com/) as an operating system
+-   [Gunicorn](https://gunicorn.org/) configuration and error-logging
+-   [Nginx](https://www.nginx.com/) configuration and server security/performance optimization
+-   Hosting MySQL database on AWS with a [RDS](https://aws.amazon.com/rds/) instance
+-   Hosting Redis cache on AWS with an [Elasticache](https://aws.amazon.com/elasticache/) instance
+-   Using AWS Cloudfront as a Content Delivery Network (CDN) and connecting Google Domains custom domain to AWS CDN
+-   Error logging with [Sentry](https://sentry.io/welcome/) for hosted application in production
+-   Continous integration and continuous deployment with [Travis CI](https://travis-ci.org/) and AWS CodeDeploy
+-   (Deprecated) Hosting application on AWS with an [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance and MySQL database on AWS with a [RDS](https://aws.amazon.com/rds/) instance
 
 ## 🛠 Technologies
-|Graphic Design|Front-End|Back-End|Database|Deployment|Testing|
-|------------- | ------- | ------ | ------ | -------- | -------|
-|Inkscape	    |HTML5	  |Python3  |SQLite and MySQL  |[AWS Elastic Beanstalk]()	   |Pytest|
-|.			      |CSS3		  |[Flask](https://flask.palletsprojects.com/en/1.1.x/)   |[SQL Alchemy](https://www.sqlalchemy.org/)|[AWS RDS](https://aws.amazon.com/rds/)      |Lighthouse|
-|.			        |Bootstrap 4|[Werkzeug](https://werkzeug.palletsprojects.com/en/1.0.x/)	|[Flask SQL Alchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)	  |Git		   |.|
-|.			        |[Jinja](https://jinja.palletsprojects.com/en/2.11.x/)    |.		   |.		    |.		     |.|
+|Graphic Design |Front-End	|Back-End	|Database	|Deployment	|Testing 	|
+| ------------- | ------------- | ------------- | ------------- | ------------- | --------------|
+|Inkscape	|HTML5	 	|Python3  	|MySQL  	|AWS EC2   	|Pytest		|
+|Freepik	|CSS3	 	|Flask		|SQL Alchemy	|Ubuntu      	|Lighthouse	|
+|.		|Bootstrap 4	|Werkzeug	|Flask SQL Alchemy|Gunicorn	|.		|
+|.		|Jinja		|.		|Redis		|Nginx 		|.		|
+|.		|.		|.		|.		|Sentry		|.		|
+|.		|.		|.	  	|.	   	|AWS RDS	|.       	|
+|.		|.		|.		|.		|AWS Elasticache|.		|
+|.		|.		|.		|.		|AWS Cloudfront	|.		|
+|.		|.		|.		|.		|Travis CI	|.		|
+|.		|.		|.		|.		|AWS CodeDeploy	|.		|
 
 ## ⚖️ Methodology
+-   Initially hosted application on AWS [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) for a gradual introduction to AWS. Previously only used Heroku to host full-stack web applications, so I chose a similar IaaS offered by AWS. After numerous Elastic Beanstalk policy changes and disconnections, decided to go to the next level down in AWS, which is hosting this application on an EC2 instance. This offered a lot of experience and opportunities for learning about web servers.
+-   Ubuntu as OS since it's the most popular operating system for web servers. Gunicorn as the WSGI since it's fast. Nginx as the reverse proxy since it was made with this optimization in mind.
+-   Initially stored user sessions in a tmp folder with [`mkdtemp`](https://docs.python.org/3/library/tempfile.html), however Nginx had trouble accessing it in production. Therefore refactored application to store user sessions in a Redis database and hosted the Redis database on AWS [Elasticache](https://aws.amazon.com/elasticache/).
 
 ## ⚙️ Features
 -   Login, sign-up
@@ -52,8 +69,13 @@
 
 ## 🚀 Getting Started
 ### To run this project on your system:
+-   Ensure that `python3` and `python3-pip` are installed on your system
 -   In your terminal, navigate to the root project directory and run the following commands
--   To install the dependencies
+-   Activate the virtual environment
+```
+$ pipenv shell
+```
+-   Install the dependencies
 ```
 $ pipenv install -r requirements.txt
 ```
@@ -65,10 +87,6 @@ $ pipenv install -r requirements.txt
 	-   Click API Tokens
 	-   Copy the key that appears under the Token column (it should begin with pk_) into the `<value>` in the next step
 -   Create a .env file and paste the following into it: `API_KEY=<value>`
--   Activate the virtual environment
-```
-$ pipenv shell
-```
 -   To start the web server, execute (without debugging):
 ```
 $ python application.py 
@@ -86,20 +104,20 @@ $ python
 $ from application import db
 $ db.create_all()
 ```
--   To initialize the database with SQL command-line arguemnts:
+-   To initialize the database with SQL command-line arguemnts (using MySQL syntax) run each `CREATE TABLE` command (one at a time):
 ```
 CREATE TABLE users (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	username VARCHAR(50) UNIQUE, 
 	hash VARCHAR(200) NOT NULL, 
 	cash INTEGER
-)
+);
 CREATE TABLE portfolio (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	user_id INTEGER, 
 	symbol VARCHAR(5), 
 	current_shares INTEGER
-)
+);
 CREATE TABLE bought (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	buyer_id INTEGER, 
@@ -107,7 +125,7 @@ CREATE TABLE bought (
 	symbol VARCHAR(5), 
 	shares_bought INTEGER, 
 	price_bought FLOAT
-)
+);
 CREATE TABLE sold (
 	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	seller_id INTEGER, 
@@ -115,7 +133,7 @@ CREATE TABLE sold (
 	symbol VARCHAR(5), 
 	shares_sold INTEGER, 
 	price_sold FLOAT
-)
+);
 ```
 
 ## 📣 Attribution
