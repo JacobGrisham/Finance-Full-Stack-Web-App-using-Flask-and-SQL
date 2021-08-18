@@ -89,27 +89,27 @@ $ db.create_all()
 -   To initialize the database with SQL command-line arguemnts:
 ```
 CREATE TABLE users (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	username VARCHAR(50) UNIQUE, 
 	hash VARCHAR(200) NOT NULL, 
 	cash INTEGER
 )
 CREATE TABLE portfolio (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	user_id INTEGER, 
 	symbol VARCHAR(5), 
 	current_shares INTEGER
 )
 CREATE TABLE bought (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	buyer_id INTEGER, 
-	time VARCHAR, 
+	time VARCHAR(100), 
 	symbol VARCHAR(5), 
 	shares_bought INTEGER, 
 	price_bought FLOAT
 )
 CREATE TABLE sold (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	seller_id INTEGER, 
 	time VARCHAR(100), 
 	symbol VARCHAR(5), 
