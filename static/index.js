@@ -1,11 +1,16 @@
+// --------------------------------------
 // Google Analytics
+// --------------------------------------
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
 gtag('config', 'G-36KQSD0BWH');
 
-// Example starter JavaScript for disabling form submissions if there are invalid fields
+
+// --------------------------------------
+// Disable form submissions if there are invalid fields
+// --------------------------------------
 (function () {
   'use strict'
 
@@ -23,9 +28,11 @@ gtag('config', 'G-36KQSD0BWH');
 
         if (input.checkValidity() === false) {
             input.classList.add('is-invalid')
+            input.nextElementSibling.nextElementSibling.classList.remove('spaceholder')
         }
         else {
             input.classList.add('is-valid')
+            input.nextElementSibling.nextElementSibling.classList.remove('spaceholder')
         }
       }, false);
     });
@@ -48,3 +55,11 @@ gtag('config', 'G-36KQSD0BWH');
     })
 
 })()
+
+// --------------------------------------
+// Copyright Date
+// --------------------------------------
+var date = new Date();
+var year = date.getFullYear();
+
+document.getElementById("date").innerHTML = year;
