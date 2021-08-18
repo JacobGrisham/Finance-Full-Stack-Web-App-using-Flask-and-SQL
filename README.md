@@ -48,9 +48,10 @@
 |Freepik	|CSS3	 	|Flask		|SQL Alchemy	|Ubuntu      	|Lighthouse	|
 |.		|Bootstrap 4	|Werkzeug	|Flask SQL Alchemy|Gunicorn	|.		|
 |.		|Jinja		|.		|Redis		|Nginx 		|.		|
+|.		|.		|.		|.		|Sentry		|.		|
 |.		|.		|.	  	|.	   	|AWS RDS	|.       	|
 |.		|.		|.		|.		|AWS Elasticache|.		|
-|.		|.		|.		|.		|Sentry		|.		|
+|.		|.		|.		|.		|AWS Cloudfront	|.		|
 |.		|.		|.		|.		|Travis CI	|.		|
 |.		|.		|.		|.		|AWS CodeDeploy	|.		|
 
