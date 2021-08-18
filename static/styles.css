@@ -50,6 +50,10 @@ main img
     background-color: transparent;
 }
 
+h1 {
+    margin-top: 4rem;
+}
+
 #freepik_stories-investing {
     height: auto;
     width: auto;
@@ -66,15 +70,6 @@ main img
     }
 }
 
-
-@media only screen and (min-width: 767.98px) {
-    .footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
-}
-
 .background
 {
     position: absolute;
@@ -86,6 +81,7 @@ main img
 {
     width: 100vw;
 }
+
 @media only screen and (max-width: 767.98px) {
     #home
     {
@@ -96,6 +92,21 @@ main img
 
 .error {
     max-width: max-content;
+}
+
+.footer {
+    display: block;
+}
+
+.footer p {
+    margin: 0;
+    line-height: 24px;
+}
+
+/* Heart icon in footer */
+.footer p svg {
+    height: 16px;
+    width: 20px;
 }
 
 /* --------------------------------------------- */
@@ -114,7 +125,7 @@ main img
 
 .form-label-group {
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
   
 .form-label-group > input,
@@ -167,4 +178,8 @@ main img
     padding-bottom: calc(var(--input-padding-y) / 3);
     font-size: 12px;
     color: #777;
+}
+
+.spaceholder {
+    height: 20px;
 }
