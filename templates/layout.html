@@ -33,7 +33,7 @@
 
     <body>
 
-        <nav class="navbar navbar-expand-md navbar-light bg-light border">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light border">
             <a class="navbar-brand" href="/">Robynhood</a>
             <img class="mr-auto" src="../static/images/feather.svg">
             <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
@@ -68,15 +68,18 @@
             </header>
         {% endif %}
 
-        <main>
+        <main class="mt-5">
             {% block main %}{% endblock %}
         </main>
         
-        <footer class="footer">
-            <p class="small mr-3 text-muted text-center">Copyright Jacob Grisham 2021</p>
-            <p class="small text-muted text-center">
-                Data provided for free by <a href="https://iextrading.com/developer">IEX</a>. View <a href="https://iextrading.com/api-exhibit-a/">IEX’s Terms of Use</a>.
-            </p>
+        <footer>
+            <nav class="navbar fixed-bottom navbar-light bg-light small text-muted text-center footer">
+                <p>Made with<svg><use xlink:href="static/images/sprite.svg#icon-heart"></use></svg>in SF</p>
+                <p>Copyright &copy; <time id="date"></time> by <a href='https://www.jacobgrisham.com/'>Jacob Grisham</a></p>
+                <p>
+                    Data provided for free by <a href="https://iextrading.com/developer">IEX</a>. View <a href="https://iextrading.com/api-exhibit-a/">IEX’s Terms of Use</a>.
+                </p>
+            </nav>
         </footer>
 
     </body>
