@@ -42,18 +42,18 @@
 -   (Deprecated) Hosting application on AWS with an [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) instance and MySQL database on AWS with a [RDS](https://aws.amazon.com/rds/) instance
 
 ## 🛠 Technologies
-|Graphic Design |Front-End			|Back-End				|Database				|Deployment			|Testing 	|
+|Graphic Design |Front-End			|Back-End				|Database				|Deployment			|Testing 				|
 | ------------- | ------------- | ------------- | ------------- | ------------- | --------------|
-|Inkscape				|HTML5	 				|Python3  			|MySQL  				|AWS EC2   	|Pytest		|
-|Freepik				|CSS3	 					|Flask					|SQL Alchemy		|Ubuntu      	|Lighthouse	|
-|.							|Bootstrap 4		|Werkzeug				|Flask SQL Alchemy|Gunicorn	|.		|
-|.							|Jinja					|.							|Redis					|Nginx 		|.		|
-|.							|.							|.							|.							|Sentry		|.		|
-|.							|.							|.	  					|.	   					|AWS RDS	|.       	|
-|.							|.							|.							|.							|AWS Elasticache|.		|
-|.							|.							|.							|.							|AWS Cloudfront	|.		|
-|.							|.							|.							|.							|Travis CI	|.		|
-|.							|.							|.							|.							|AWS CodeDeploy	|.		|
+|Inkscape				|HTML5	 				|Python3  			|MySQL  				|AWS EC2   			|Pytest					|
+|Freepik				|CSS3	 					|Flask					|SQL Alchemy		|Ubuntu      		|Lighthouse			|
+|.							|Bootstrap 4		|Werkzeug				|Flask SQL Alchemy|Gunicorn			|.							|
+|.							|Jinja					|.							|Redis					|Nginx 					|.							|
+|.							|.							|.							|.							|Sentry					|.							|
+|.							|.							|.	  					|.	   					|AWS RDS				|.       				|
+|.							|.							|.							|.							|AWS Elasticache|.							|
+|.							|.							|.							|.							|AWS Cloudfront	|.							|
+|.							|.							|.							|.							|Travis CI			|.							|
+|.							|.							|.							|.							|AWS CodeDeploy	|.							|
 
 ## ⚖️ Methodology
 -   Initially hosted application on AWS [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) for a gradual introduction to AWS. Previously only used Heroku to host full-stack web applications, so I chose a similar IaaS offered by AWS. After numerous Elastic Beanstalk policy changes and disconnections, decided to go to the next level down in AWS, which is hosting this application on an EC2 instance. This offered a lot of experience and opportunities for learning about web servers.
