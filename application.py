@@ -1,6 +1,7 @@
 import os
-import sentry_sdk
 import redis
+import logging
+import sentry_sdk
 from datetime import datetime
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from flask_session import Session
@@ -42,11 +43,11 @@ def after_request(response):
 application.jinja_env.filters["usd"] = usd
 
 # Configure Redis for storing the session data on the server-side
-application.secret_key = 'BAD_SECRET_KEY'
+application.secret_key = os.environ['CACHE_SECRET_KEY']
 application.config['SESSION_TYPE'] = 'redis'
 application.config['SESSION_PERMANENT'] = False
 application.config['SESSION_USE_SIGNER'] = True
-application.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
+application.config['SESSION_REDIS'] = os.environ['REDIS_URI']
 # Create and initialize the Flask-Session object AFTER `app` has been configured
 server_session = Session(application)
 
@@ -357,25 +358,15 @@ def login():
         rows = Users.query.filter_by(username=request.form.get("username")).first()
         #("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
 
-        # Ensure user exists
-        try:
-            rows.username
+        # Ensure username exists and password is correct
+        if rows.username != request.form.get("username") or not check_password_hash(rows.hash, request.form.get("password")):
+            return unauthorized("invalid username and/or password")
 
-        # NoneType is returned and therefore username does't exist in database
-        except AttributeError:
-             return noData("User doesn't exist")
+        # Remember which user has logged in
+        session["user_id"] = rows.id
 
-        # Finish logging user in
-        else:
-            # Ensure username and password is correct
-            if rows.username != request.form.get("username") or not check_password_hash(rows.hash, request.form.get("password")):
-                return unauthorized("invalid username and/or password")
-
-            # Remember which user has logged in
-            session["user_id"] = rows.id
-
-            # Redirect user to home page
-            return redirect("/home")
+        # Redirect user to home page
+        return redirect("/home")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -559,7 +550,13 @@ def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
 
+# Production debugging
+if __name__ != '__main__':
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    application.logger.handlers = gunicorn_logger.handlers
+    application.logger.setLevel(gunicorn_logger.level)
+
 # Run Server
-# Run the following in the command line: python application.py
 if __name__ == '__main__':
-    application.run(host='0.0.0.0') # Production server
+    application.run(host='0.0.0.0')
+# Run the following in the command line: python application.py
