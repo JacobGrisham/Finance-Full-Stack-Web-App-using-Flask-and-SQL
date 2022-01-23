@@ -1,5 +1,4 @@
 import os
-import sentry_sdk
 import redis
 from datetime import datetime
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
@@ -9,19 +8,7 @@ from flask_marshmallow import Marshmallow
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
-from sentry_sdk.integrations.flask import FlaskIntegration
 from helpers import badRequest, noData, unauthorized, forbidden, notFound, login_required, lookup, usd
-
-# Configure error and performance logging with Sentry
-sentry_sdk.init(
-    dsn="https://4c4bfcc7d0a444089fd34b8e12a890eb@o958423.ingest.sentry.io/5907180",
-    integrations=[FlaskIntegration()],
-
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production.
-    traces_sample_rate=0.5
-)
 
 # Configure application
 application = Flask(__name__)
@@ -41,7 +28,7 @@ def after_request(response):
 # Custom filter
 application.jinja_env.filters["usd"] = usd
 
-# Configure Redis for storing the session data on the server-side
+# Configure Redis for storing the session data locally on the server-side
 application.secret_key = 'BAD_SECRET_KEY'
 application.config['SESSION_TYPE'] = 'redis'
 application.config['SESSION_PERMANENT'] = False
@@ -50,22 +37,8 @@ application.config['SESSION_REDIS'] = redis.from_url('redis://localhost:6379')
 # Create and initialize the Flask-Session object AFTER `app` has been configured
 server_session = Session(application)
 
-# Configure deployemnt to use AWS RDS database
-if 'RDS_HOSTNAME' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'flask.db.backends.mysql',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
-        }
-    }
-
-# When project was running locally. Configure Flask to use SQLAlchemy (SQLite3) database
-# application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'finances.db')
-application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + os.environ['RDS_USERNAME'] + ':' + os.environ['RDS_PASSWORD'] + '@' + os.environ['RDS_HOSTNAME'] + '/' + os.environ['RDS_DB_NAME']
+# Configure Flask to use local SQLite3 database with SQLAlchemy
+application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'finances.db')
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 application.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(application)
@@ -562,4 +535,4 @@ def page_not_found(e):
 # Run Server
 # Run the following in the command line: python application.py
 if __name__ == '__main__':
-    application.run(host='0.0.0.0') # Production server
+    application.run(host='0.0.0.0')
