@@ -13,7 +13,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from sentry_sdk.integrations.flask import FlaskIntegration
 from helpers import badRequest, noData, unauthorized, forbidden, notFound, login_required, lookup, usd
 
-# Configure error and performance logging with Sentry
+# Configure production Sentry logging for error and performance
 sentry_sdk.init(
     dsn="https://4c4bfcc7d0a444089fd34b8e12a890eb@o958423.ingest.sentry.io/5907180",
     integrations=[FlaskIntegration()],
@@ -42,7 +42,7 @@ def after_request(response):
 # Custom filter
 application.jinja_env.filters["usd"] = usd
 
-# Configure Redis for storing the session data on the server-side
+# Configure production AWS Redis Elasticache for storing the session data
 application.secret_key = os.environ['CACHE_SECRET_KEY']
 application.config['SESSION_TYPE'] = 'redis'
 application.config['SESSION_PERMANENT'] = False
@@ -51,7 +51,7 @@ application.config['SESSION_REDIS'] = os.environ['REDIS_URI']
 # Create and initialize the Flask-Session object AFTER `app` has been configured
 server_session = Session(application)
 
-# Configure deployemnt to use AWS RDS database
+# Pull environmental variables for database credentials
 if 'RDS_HOSTNAME' in os.environ:
     DATABASES = {
         'default': {
@@ -64,8 +64,7 @@ if 'RDS_HOSTNAME' in os.environ:
         }
     }
 
-# When project was running locally. Configure Flask to use SQLAlchemy (SQLite3) database
-# application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'finances.db')
+# Configure production AWS MySQL RDS database
 application.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + os.environ['RDS_USERNAME'] + ':' + os.environ['RDS_PASSWORD'] + '@' + os.environ['RDS_HOSTNAME'] + '/' + os.environ['RDS_DB_NAME']
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 application.config['SQLALCHEMY_ECHO'] = True
@@ -550,7 +549,7 @@ def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
 
-# Production debugging
+# Configure production Gunicorn logging for debugging
 if __name__ != '__main__':
     gunicorn_logger = logging.getLogger('gunicorn.error')
     application.logger.handlers = gunicorn_logger.handlers
@@ -559,4 +558,3 @@ if __name__ != '__main__':
 # Run Server
 if __name__ == '__main__':
     application.run(host='0.0.0.0')
-# Run the following in the command line: python application.py
