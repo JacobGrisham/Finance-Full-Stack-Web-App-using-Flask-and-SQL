@@ -5,20 +5,9 @@ import urllib.parse
 from flask import redirect, render_template, request, session
 from functools import wraps
 
-def badRequest(errorMessage):
-    return render_template("400.html", info = (errorMessage))
 
-def noData(errorMessage):
-    return render_template("no-data.html", info = (errorMessage))
-
-def unauthorized(errorMessage):
-    return render_template("401.html", info = (errorMessage))
-
-def forbidden(errorMessage):
-    return render_template("403.html", info = (errorMessage))
-
-def notFound(errorMessage):
-    return render_template("404.html", info = (errorMessage))
+def errorPage(blockTitle, errorMessage, imageSource):
+    return render_template("error.html", title = (blockTitle), info = (errorMessage), file = (imageSource))
 
 
 def login_required(f):
