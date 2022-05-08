@@ -138,7 +138,8 @@ CREATE TABLE sold (
 
 ## 📣 Attribution
 -   Stock prices pulled from [IEX Stock Quote API](https://iexcloud.io/docs/api/#quote)
--   Feather icon made by [Freepik](http://www.freepik.com/) from [Flaticon](https://www.flaticon.com/free-icon/feather_105145?term=feather&page=1&position=85&related_item_id=105145)
+-   Hat icon made by [Alice Noir](https://thenounproject.com/AliceNoir/) from [the Noun Project](https://thenounproject.com/icon/pirate-hat-4121754/)
+-   Feather icon made by [Jacopo Mencacci](https://thenounproject.com/jacopoPaper/) from [the Noun Project](https://thenounproject.com/icon/feather-10683/)
 -   Illustrations by [Freepik Storyset](https://storyset.com/people/rafiki)
 
 ## 🔒 License
