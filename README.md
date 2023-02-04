@@ -1,7 +1,7 @@
 <div align="center">
   <img width="200" src="static/favicon/android-chrome-512x512.png" alt="Wall Street Trader logo">
 
-# [Finance: Full Stack Web App using Flask and SQL](http://Wall Street Trader.app/)
+# [Finance: Full Stack Web App using Flask and SQL](http://wallstreettrader.app/)
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](http://flask-env.eba-z6mwdiua.us-west-2.elasticbeanstalk.com/)
 ![Security Headers](https://img.shields.io/security-headers?url=http%3A%2F%2Fflask-env.eba-z6mwdiua.us-west-2.elasticbeanstalk.com%2F)
 [![Build Status](https://travis-ci.org/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL.svg?branch=master)](https://travis-ci.org/JacobGrisham/Finance-Full-Stack-Web-App-using-Flask-and-SQL)
