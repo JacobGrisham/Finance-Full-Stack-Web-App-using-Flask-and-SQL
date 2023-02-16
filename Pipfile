@@ -15,7 +15,7 @@ mysql-connector = "*"
 Flask = "==2.0.1"
 Flask-Session = "==0.4.0"
 Flask-SQLAlchemy = "==2.5.1"
-Werkzeug = "==2.0.1"
+Werkzeug = "==2.2.3"
 redis = "==3.5.3"
 
 [requires]
