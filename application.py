@@ -25,6 +25,20 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+def history_view(request):
+    bought_stocks = ...  # Logic to fetch bought stocks
+    sold_stocks = ...  # Logic to fetch sold stocks
+
+    bought_value = sum([stock.shares_bought for stock in bought_stocks])
+    sold_value = sum([stock.shares_sold for stock in sold_stocks])
+
+    # Pass the data to the template
+    return render(request, 'your_template.html', {
+        'bought_value': bought_value,
+        'sold_value': sold_value,
+    })
+
+
 # Custom filter
 application.jinja_env.filters["usd"] = usd
 
