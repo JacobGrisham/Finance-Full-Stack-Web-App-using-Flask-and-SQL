@@ -8,6 +8,12 @@
 <div class="container">
     <img src="../static/images/history.svg" class="background">
     <h1>History</h1>
+    
+    <!-- Pie Chart Section -->
+    <h2>Transaction Summary</h2>
+    <canvas id="transactionChart" width="400" height="400"></canvas>
+
+    <h2 class="mt-5">Bought Stocks</h2>
     <table class="table table-hover table-md-responsive">
         <tr class="thead-light">
             <th scope="col">Stocks</th>
@@ -23,6 +29,9 @@
             <td>{{ bought_list[i].time }}</td>
         </tr>
         {% endfor %}
+    </table>
+
+    <h2 class="mt-5">Sold Stocks</h2>
     <table class="table table-hover">
         <tr class="thead-light">
             <th scope="col">Stocks</th>
@@ -40,4 +49,40 @@
         {% endfor %}
     </table>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Example transaction data for the pie chart
+    
+    const labels = Object.keys(transactionData);
+    const data = Object.values(transactionData);
+
+    const ctx = document.getElementById('transactionChart').getContext('2d');
+
+    const transactionChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Transaction Amounts',
+                data: data,
+                backgroundColor: ['#36A2EB', '#FF6384'],
+                borderColor: '#fff',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Transaction Summary'
+                }
+            }
+        }
+    });
+</script>
 {% endblock %}

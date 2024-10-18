@@ -24,7 +24,6 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     return response
-
 # Custom filter
 application.jinja_env.filters["usd"] = usd
 
