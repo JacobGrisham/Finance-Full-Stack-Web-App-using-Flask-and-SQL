@@ -1,0 +1,8 @@
+flask
+flask-session
+flask-sqlalchemy
+flask-marshmallow
+redis
+werkzeug
+requests
+datetime
